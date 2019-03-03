@@ -4,12 +4,58 @@
 
 	"use strict";
 
+
+
+	$(document).on("scroll", onScroll);
+
+	$('a[href^="#"]').on('click', function (e) {
+		e.preventDefault();
+		$(document).off("scroll");
+
+		$('a').each(function () {
+			$(this).removeClass('active');
+			// if ($(window).width() < 768) {
+			// 	$('.nav-menu').slideUp();
+			// }
+		});
+
+		$(this).addClass('active');
+
+		var target = this.hash,
+			menu = target;
+
+		target = $(target);
+		$('html, body').stop().animate({
+			'scrollTop': target.offset().top
+		}, 500, 'swing', function () {
+			window.location.hash = target.selector;
+			$(document).on("scroll", onScroll);
+		});
+	});
+
+
+	function onScroll(event) {
+		if ($('.home').length) {
+			var scrollPos = $(document).scrollTop();
+			$('nav ul li a').each(function () {
+				var currLink = $(this);
+				var refElement = $(currLink.attr("href"));
+			});
+		}
+	}
+
+
 	// JQUERY LIGHT BOX
 
 	if ($.isFunction($.fn.fluidbox)) {
 		$('a').fluidbox();
 	}
 
+	$(document).ready(function () {
+		$(".slider-content").addClass("animated fadeInUp");
+		$("#clock").addClass("animated pulse");
+
+	});
 
 	$('a[href="#"]').on('click', function (event) {
 		return;
@@ -231,7 +277,7 @@ function initMap() {
 	// Create a map object, and include the MapTypeId to add
 	// to the map type control.
 
-	var uluru = { lat: 56.946285, lng: 24.105078 };
+	var uluru = { lat: 1.3055, lng: 103.826 };
 	var map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 4,
 		center: uluru
