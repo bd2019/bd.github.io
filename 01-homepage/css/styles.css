@@ -245,7 +245,7 @@ header .main-menu li.drop-down a.mouseover + ul.drop-down-menu{ display: block;
 --------------------------------- */
 .main {
 	text-align: right;
-	padding: 5rem;
+	padding: 50px;
 }
 .main-slider{ height: 100vh; 
 	position: relative; z-index: 1; 
